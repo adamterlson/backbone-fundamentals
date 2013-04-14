@@ -4,7 +4,7 @@ Used in conjunction with this [slide deck](http://rvl.io/adamterlson/backbone-fu
 
 Created for Best Buy by Adam Terlson (@adamterlson)
 
-##usage
+##Usage
 
 Navigate to folder and start the Node/Express server:
 
