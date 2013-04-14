@@ -17,3 +17,16 @@ nav ul li:last-child {
 	border: 1px solid #ccc;
 	padding: 40px;
 }
+
+.task-list li {
+	border-bottom: 1px solid #ccc;
+}
+
+.task-list label {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.task-list .complete {
+	text-decoration: line-through;
+}

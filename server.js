@@ -4,6 +4,10 @@ var express = require('express'),
  
 var app = express();
 
+app.configure(function () {
+    app.use(express.bodyParser());
+});
+
 app.get('/api/task', task.findAll);
 app.get('/api/task/:id', task.findById);
 app.post('/api/task', task.addTask);
