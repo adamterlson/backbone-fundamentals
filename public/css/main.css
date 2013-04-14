@@ -1,0 +1,19 @@
+nav {
+	margin: 20px 0;
+}
+
+nav ul li {
+	float: left;
+	padding-right: 15px;
+	margin-right: 15px;
+	border-right: 1px solid #ccc;
+}
+
+nav ul li:last-child {
+	border-right: 0;
+}
+
+#main {
+	border: 1px solid #ccc;
+	padding: 40px;
+}
