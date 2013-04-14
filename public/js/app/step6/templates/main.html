@@ -1,0 +1,25 @@
+<h1>A Todo App</h1>
+<input type="text" class="input-block-level create-task" />
+<nav>
+	<ul class="unstyled clearfix filters">
+		<li><button class="btn btn-link" data-completed-filter="">Show All</button></li>
+		<li><button class="btn btn-link" data-completed-filter="false">Active</button></li>
+		<li><button class="btn btn-link" data-completed-filter="true">Completed</button></li>
+	</ul>
+</nav>
+<% if (tasks && tasks.length) { %>
+	<ul class="task-list unstyled">
+		<% _.each(tasks, function (task) { %>
+			<li class="<%- task.complete ? 'complete' : '' %>" data-task-id="<%-task.id%>">
+				<label class="checkbox">
+					<input type="checkbox" class="complete-task" <%- task.complete ? 'checked disabled' : '' %>/>
+					<%-task.description%>
+					<button class="btn btn-link delete-task pull-right">delete</button>
+				</label>
+			</li>
+		<% }); %>
+	</ul>
+	<button class="btn btn-link delete-all-tasks pull-right">delete all</button>
+<% } else { %>
+	<em>Sorry, to tasks found!</em>
+<% } %>
