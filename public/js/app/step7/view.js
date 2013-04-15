@@ -1,13 +1,17 @@
 /*
 Changes:
-	Added property for task filter
-	Modified template to include links for switching filter
-	Bound to click events for setting filters
-	Created function for setting filters on the view and rendering
-	Updating render to look for filter and manipulate the collection
+	Split out template to only have a placeholder for the list (now a DIV).  task.html now contains the template for a specific task.
+	Imported additional dependency for taskView.
+	Created renderTask for creating and rendering subview.
+	Created renderTasks for looping through all tasks in a collection
+	Updated render filtering to create a collection so as to pass models to the subview
+	Only passing necessary data to parent render
+	Updated render to loop through collection and call renderTask for each model constructing a UL
+	Moved all events and methods that are specific to a task into taskView
+	Updated methods in taskView to point at own model rather than finding by ID.
 */
 
-define(['text!./templates/main.html', './collections/taskCollection'], function (template, taskCollection) {
+define(['text!./templates/main.html', './collections/taskCollection', './taskView'], function (template, taskCollection, taskView) {
 
 	var view = Backbone.View.extend({
 		// Properties
@@ -28,8 +32,8 @@ define(['text!./templates/main.html', './collections/taskCollection'], function 
 
 		events: {
 			'keydown .create-task': 'onCreateTaskKeydown',
-			'change .complete-task': 'onCompleteTaskChange',
-			'click .filters button': 'onFiltersButtonClick'
+			'click .filters button': 'onFiltersButtonClick',
+			'click .delete-all-tasks': 'onDeleteAllTasksClick'
 		},
 
 		// Bootstrap
@@ -44,19 +48,37 @@ define(['text!./templates/main.html', './collections/taskCollection'], function 
 		// Rendering
 
 		render: function () {
-			var collection = this.collection.toJSON();
+			var filteredCollection = this.collection;
 
 			if (this.completionFilter != null) {
-				collection = _.filter(collection, function (task) {
-					return !!task.complete === this.completionFilter;
-				}, this);
+				filteredCollection = new taskCollection(this.collection.filter(function (task) {
+					return !!task.get('complete') === this.completionFilter;
+				}, this));
 			}
 
-			this.$el.html(this.template({ tasks: collection }));
+			this.$el.html(this.template({ hasTasks: !!filteredCollection.length }));
+
+			this.$('.task-list').html(this.renderTasks(filteredCollection));
 
 			// Note `this.$()` -- searches the view's context -- ALWAYS USE IT
 			// Also, because this is a render function, it's okay to use jQuery here.
 			this.$('.create-task').focus();
+		},
+
+		renderTasks: function (collection) {
+			// This is a render function, so using jQuery to construct DOM elements is okay!
+			var tasks = $('<ul class="unstyled">');
+			collection.each(function (model) {
+				tasks.append(this.renderTask(model));
+			}, this);
+
+			return tasks;
+		},
+
+		renderTask: function (model) {
+			var task = new taskView({ model: model });
+			task.bootstrap();
+			return task.$el;
 		},
 
 		// UI Events
@@ -67,17 +89,15 @@ define(['text!./templates/main.html', './collections/taskCollection'], function 
 			}
 		},
 
-		onCompleteTaskChange: function (e) {
-			var id = $(e.target).closest('li').data('taskId');
-
-			this.completeTask(id);
-		},
-
 		onFiltersButtonClick: function (e) {
 			var $target = $(e.target),
 				value = $target.data('completedFilter');
 
 			this.applyFilter(value);
+		},
+
+		onDeleteAllTasksClick: function (e) {
+			this.deleteAllTasks();
 		},
 
 		// Backbone Events
@@ -104,9 +124,16 @@ define(['text!./templates/main.html', './collections/taskCollection'], function 
 			return this.collection.create({ description: description }, { wait: true, silent: false });
 		},
 
-		completeTask: function (id) {
-			// This line equates to: this.collection.get(id).set({ complete: true }).save();
-			return this.collection.get(id).save({ complete: true });
+		deleteAllTasks: function () {
+			if (confirm("Are you sure you want to delete every task?")) {
+				var individualDeletes = [];
+
+				while(this.collection.length) {
+					individualDeletes.push(this.collection.last().destroy({ silent: true }));
+				}
+
+				return $.when.apply($, individualDeletes).then(this.render);
+			}
 		},
 
 		applyFilter: function (value) {

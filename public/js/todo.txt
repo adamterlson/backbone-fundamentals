@@ -28,4 +28,14 @@ Changes:
 	Bound to the event and called delete all method
 	Optimized deletion to only render once instead of after every delete
 
+Changes:
+	Split out template to only have a placeholder for the list (now a DIV).  task.html now contains the template for a specific task.
+	Imported additional dependency for taskView.
+	Created renderTask for creating and rendering subview.
+	Created renderTasks for looping through all tasks in a collection
+	Updated render filtering to create a collection so as to pass models to the subview
+	Only passing necessary data to parent render
+	Updated render to loop through collection and call renderTask for each model constructing a UL
+	Moved all events and methods that are specific to a task into taskView
+	Updated methods in taskView to point at own model rather than finding by ID.
 

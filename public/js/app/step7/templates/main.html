@@ -1,0 +1,16 @@
+<h1>A Todo App - Subviews</h1>
+<input type="text" class="input-block-level create-task" />
+<nav>
+	<ul class="unstyled clearfix filters">
+		<li><button class="btn btn-link" data-completed-filter="">Show All</button></li>
+		<li><button class="btn btn-link" data-completed-filter="false">Active</button></li>
+		<li><button class="btn btn-link" data-completed-filter="true">Completed</button></li>
+	</ul>
+</nav>
+<% if (hasTasks) { %>
+	<div class="task-list">
+	</div>
+	<button class="btn btn-link delete-all-tasks pull-right">delete all</button>
+<% } else { %>
+	<em>Sorry, to tasks found!</em>
+<% } %>
