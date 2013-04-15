@@ -4,7 +4,9 @@ Created for Best Buy by Adam Terlson ([@adamterlson](http://twitter.com/adamterl
 
 This is a testbed application that shows a build-up progression for a Todo application (similar to [ToDo MVC](http://backbonejs.org/examples/todos/) but in my own style).  The application consumes real REST services served up from a Node+Express server.  The code is also heavily commented to provide instruction as to what changed and wherever necessary describing what I did and why.
 
-**THIS IS NOT GOSPEL, THERE IS NO ONE WAY.**  What I have is based on leading large teams where folks often don't know Backbone and trying to not create a tangled mess.
+###There is no single "best" way to write backbone apps.###
+
+What I have is based on leading large teams where folks often don't know Backbone and trying to not create a tangled mess, but finding a paradigm that works for you/your team/your company is more important than anything else.  It's about creating a convention so everyone can jump in and understand the code.  This is my convention.
 
 For additional help on Backbone best practices and code style, check out [my presentation on the topic](http://rvl.io/adamterlson).
 
