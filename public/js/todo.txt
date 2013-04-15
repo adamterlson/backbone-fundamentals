@@ -1,0 +1,31 @@
+Changes:
+	Created collection and model
+	Made bootstrap fetch the collection prior to rendering
+	Render now takes JSONified collection
+
+Changes:
+	Added event for keydown on create task
+	Created method on view for creating a task abstracted from UI event which leverages create -- Note comment on why it's here, not in the model
+	Bind to all events on collection
+	On almost all events, render.  Leaving off things like parse are a good idea.
+
+Changes:
+	Added data-task-id attribute to template for hook
+	Bound to the change event of completion checkbox
+	Implemented completeTask which gets the appropriate model, changes it and saves
+
+Changes:
+	Added property for task filter
+	Modified template to include links for switching filter
+	Bound to click events for setting filters
+	Created function for setting filters on the view and rendering
+	Updating render to look for filter and manipulate the collection
+
+Changes:
+	Updated template to include link for deleting
+	Bound to the event and called delete method
+	Updated template to include link for deleting everything
+	Bound to the event and called delete all method
+	Optimized deletion to only render once instead of after every delete
+
+

@@ -1,3 +1,10 @@
+/*
+Changes:
+	Created collection and model
+	Made bootstrap fetch the collection prior to rendering
+	Render now takes JSONified collection
+*/
+
 define(['text!./templates/main.html', './collections/taskCollection'], function (template, taskCollection) {
 
 	var view = Backbone.View.extend({

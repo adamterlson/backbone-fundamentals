@@ -50,7 +50,7 @@ define(['text!./templates/main.html', './collections/taskCollection'], function 
 		// UI Events
 
 		onCreateTaskKeydown: function (e) {
-			if (e.keyCode === 13) {
+			if (e.which === 13) {
 				this.createTask($(e.target).val());
 			}
 		},
