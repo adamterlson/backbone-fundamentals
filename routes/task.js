@@ -21,7 +21,6 @@ if (!database.tasks) {
 function next_id() {
 	if (database.tasks && database.tasks.length > 0) {
 		var max = __.max(database.tasks, function (task) { return task.id });
-		console.log(max);
 		return max.id + 1;
 	}
 	return 0;
@@ -29,6 +28,7 @@ function next_id() {
  
 exports.findById = function(req, res) {
 	var id = parseInt(req.params.id);
+
 	console.log('Retrieving task: ' + id);
 	
 	res.send(__.findWhere(database.tasks, { id: id }));
@@ -47,7 +47,6 @@ exports.addTask = function(req, res) {
 	console.log(JSON.stringify(task));
 
 	task.id = next_id(); // In memory "database" doesn't auto-generate IDs.
-	console.log('setting id to: ' + task.id);
 	database.tasks.push(task);
 	res.send(task);
 };
