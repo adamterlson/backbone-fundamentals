@@ -1,6 +1,6 @@
 #Backbone Fundamentals
 
-Created for Best Buy by Adam Terlson (@adamterlson)
+Created for Best Buy by Adam Terlson ([@adamterlson](http://twitter.com/adamterlson))
 
 ##Usage
 
