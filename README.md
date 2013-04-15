@@ -6,7 +6,7 @@ This is a testbed application that shows a build-up progression for a Todo appli
 
 ###There is no single "best" way to write backbone apps.###
 
-What I have is based on leading large teams where folks often don't know Backbone and trying to not create a tangled mess, but finding a paradigm that works for you/your team/your company is more important than anything else.  It's about creating a convention so everyone can jump in and understand the code.  This is my convention.
+What I have is based on leading large teams where folks often don't know Backbone and trying to not create a tangled mess.  Finding a paradigm that works for you/your team/your company is more important than following what you see here.  It's about creating a convention so everyone can jump in and understand the code.  This is my convention, and have found it to work well.
 
 For additional help on Backbone best practices and code style, check out [my presentation on the topic](http://rvl.io/adamterlson).
 
