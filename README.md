@@ -4,7 +4,7 @@ Created for Best Buy by Adam Terlson ([@adamterlson](http://twitter.com/adamterl
 
 ##Usage
 
-Navigate to folder and start the Node/Express server:
+Navigate to folder where you pulled the code down to and start the Node/Express server:
 
 - `npm install`  This will install all of the node dependencies.
 - `node server.js`  Run the server!
