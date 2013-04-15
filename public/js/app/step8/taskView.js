@@ -7,10 +7,13 @@ define(['text!./templates/task.html'], function (template) {
 
 		// Backbone
 
-		tagName: 'li', // This modifies the tag that $el is.  You can also set className.  These can also be functions!
+		tagName: 'li',
 
 		initialize: function () {
 			_.bindAll(this);
+
+			this.listenTo(this.model, 'change', this.onModelChange);
+			this.listenTo(this.model, 'destroy', this.onModelDestroy);
 		},
 
 		events: {
@@ -41,6 +44,18 @@ define(['text!./templates/task.html'], function (template) {
 
 		onDeleteTaskClick: function () {
 			this.deleteTask();
+		},
+
+		// Backbone Events
+
+		onModelChange: function () {
+			this.render();
+		},
+
+		onModelDestroy: function () {
+			this.$el.fadeOut('slow', _.bind(function () {
+				this.remove();
+			}, this));
 		},
 
 		// Methods
