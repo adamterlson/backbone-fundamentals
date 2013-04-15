@@ -25,7 +25,7 @@ Check out `/public/js/annotated` to see annotated source files for the different
 
 ##Contributing
 
-If you'd like to make changes, updates, etc let me know/submit a pull request.
+If you'd like to make changes, let me know or submit a pull request.
 
 ##Troubleshooting
 
