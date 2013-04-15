@@ -1,0 +1,7 @@
+<li class="<%- complete ? 'complete' : '' %>"> <!-- Note that we don't need data-task-id anymore! -->
+	<label class="checkbox">
+		<input type="checkbox" class="complete-task" <%- complete ? 'checked disabled' : '' %>/>
+		<%-description%>
+		<button class="btn btn-link delete-task pull-right">delete</button>
+	</label>
+</li>

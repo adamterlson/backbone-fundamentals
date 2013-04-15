@@ -49,9 +49,9 @@ define(['text!./templates/main.html', './collections/taskCollection'], function 
 			var collection = this.collection.toJSON();
 
 			if (this.completionFilter != null) {
-				collection = _.filter(collection, _.bind(function (task) { // bind used to give context
+				collection = _.filter(collection, function (task) {
 					return !!task.complete === this.completionFilter;
-				}, this));
+				}, this);
 			}
 
 			this.$el.html(this.template({ tasks: collection }));
