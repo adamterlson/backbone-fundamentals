@@ -11,6 +11,10 @@ Navigate to folder and start the Node/Express server:
 
 Then navigate to: `localhost:8000`
 
+##Annotated
+
+Check out /js/annotated to see annotated source files for the different sections, what they are for, conventions to follow, things to avoid etc.  Right now only the view is complete.  More to come.
+
 ##Troubleshooting
 
 If the server fails to start, make sure nothign else is running on port 8000.
