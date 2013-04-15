@@ -10,7 +10,7 @@ For additional help on Backbone best practices and code style, check out [my pre
 
 ##Usage
 
-Navigate to folder where you pulled the code down to and start the Node/Express server:
+Assuming you have Node and NPM installed already, navigate to the folder where you pulled the code down to and start the Node/Express server:
 
 - `npm install`  This will install all of the node dependencies.
 - `node server.js`  Run the server!
