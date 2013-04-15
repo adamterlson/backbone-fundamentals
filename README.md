@@ -13,7 +13,11 @@ Then navigate to: `localhost:8000`
 
 ##Annotated
 
-Check out /public/js/annotated to see annotated source files for the different sections, what they are for, conventions to follow, things to avoid etc.  Right now only the view is complete.  More to come.
+Check out `/public/js/annotated` to see annotated source files for the different sections, what they are for, conventions to follow, things to avoid etc.  Right now only the view is complete.  More to come.
+
+##Contributing
+
+If you'd like to make changes, updates, etc let me know/submit a pull request.
 
 ##Troubleshooting
 
