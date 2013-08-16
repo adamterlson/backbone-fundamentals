@@ -1,6 +1,6 @@
 var Backbone = require('backbone'),
 	extend = require('extend'),
-	__ = require('underscore'),
+	_ = require('underscore'),
 	path = require('path');
 
 // Controller
@@ -23,33 +23,34 @@ function Controller (database, overrides) {
 	}
 
 	database || (database = new Backbone.Collection());
-	
+
 	extend(self, {
 		list: function (req, res) {
 			return database.toJSON();
 		},
-		
+
 		get: function (req, res) {
 			return database.get(req.params.id).toJSON();
 		},
-		
+
 		create: function (req, res) {
+			debugger;
 			var model = new Backbone.Model(req.body);
-			model.set(model.idAttribute, __.uniqueId());
+			model.set(model.idAttribute, _.uniqueId());
 			database.add(model);
 			return model.toJSON();
 		},
-		
+
 		update: function (req, res) {
 			return database.get(req.params.id).set(req.body).toJSON();
 		},
-		
+
 		remove: function (req, res) {
 			database.remove(database.get(req.params.id));
 			return {};
 		},
 
-		restify: function (app, endpoint) {            
+		restify: function (app, endpoint) {
 			app.get(endpoint, controllerWrapper(self.list));
 			app.get(path.join(endpoint, '/:id'), controllerWrapper(self.get));
 			app.post(endpoint, controllerWrapper(self.create));
