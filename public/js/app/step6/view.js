@@ -83,6 +83,9 @@ define(['text!./templates/main.html', './collections/taskCollection'], function 
 		},
 
 		onDeleteTaskClick: function (e) {
+			// This is needed to stop the click from also trying to complete the task
+			e.preventDefault();
+
 			var id = $(e.target).closest('li').data('taskId');
 
 			this.deleteTask(id);
@@ -104,10 +107,10 @@ define(['text!./templates/main.html', './collections/taskCollection'], function 
 		// Methods
 
 		// Why is this method not in the model?  Because this is the place for the view to decide
-		// what it means presentation-wise to create a task.  Maybe it needs to render a modal, 
+		// what it means presentation-wise to create a task.  Maybe it needs to render a modal,
 		// for example.  THIS IS NOT a utility method for abstracting model logic.  Put that in the model.
 		createTask: function (description) {
-			// Why split this out when it's only one line?  
+			// Why split this out when it's only one line?
 			// - Unit testing doesn't need to mock 'e' in order to test the view's creation of tasks
 			// - When the next person adds to what it means to "create" it's already abstracted
 

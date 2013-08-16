@@ -42,7 +42,9 @@ define(['text!./templates/task.html'], function (template) {
 			this.completeTask();
 		},
 
-		onDeleteTaskClick: function () {
+		onDeleteTaskClick: function (e) {
+			e.preventDefault();
+
 			this.deleteTask();
 		},
 
@@ -61,7 +63,7 @@ define(['text!./templates/task.html'], function (template) {
 		// Methods
 
 		completeTask: function () { // No longer needs to find by ID
-			return this.model.save({ complete: true }); 
+			return this.model.save({ complete: true });
 		},
 
 		deleteTask: function () { // No longer needs to find by ID
