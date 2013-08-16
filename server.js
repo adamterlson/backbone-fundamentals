@@ -3,7 +3,7 @@ var express = require('express'),
 	Controller = require('./controller'),
 	app = express(),
 	task = require('./routes/task');
- 
+
 var app = express();
 
 app.configure(function () {
@@ -39,6 +39,6 @@ var controller404 = new Controller(data, {
 }).restify(app, '/api/will404');
 
 app.use('/', express.static('public'));
- 
+
 app.listen(8000);
 console.log('Listening on port 8000...');
