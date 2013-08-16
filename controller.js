@@ -34,7 +34,6 @@ function Controller (database, overrides) {
 		},
 
 		create: function (req, res) {
-			debugger;
 			var model = new Backbone.Model(req.body);
 			model.set(model.idAttribute, _.uniqueId());
 			database.add(model);
