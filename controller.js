@@ -23,38 +23,38 @@ function Controller (database, overrides) {
 	}
 
 	database || (database = new Backbone.Collection());
-	
+
 	extend(self, {
 		list: function (req, res) {
 			return database.toJSON();
 		},
-		
+
 		get: function (req, res) {
 			return database.get(req.params.id).toJSON();
 		},
-		
+
 		create: function (req, res) {
 			var model = new Backbone.Model(req.body);
 			model.set(model.idAttribute, __.uniqueId());
 			database.add(model);
 			return model.toJSON();
 		},
-		
+
 		update: function (req, res) {
 			return database.get(req.params.id).set(req.body).toJSON();
 		},
-		
+
 		remove: function (req, res) {
 			database.remove(database.get(req.params.id));
 			return {};
 		},
 
-		restify: function (app, endpoint) {            
+		restify: function (app, endpoint) {
 			app.get(endpoint, controllerWrapper(self.list));
-			app.get(path.join(endpoint, '/:id'), controllerWrapper(self.get));
+			app.get(endpoint + '/:id', controllerWrapper(self.get));
 			app.post(endpoint, controllerWrapper(self.create));
-			app.put(path.join(endpoint, '/:id'), controllerWrapper(self.update));
-			app.delete(path.join(endpoint, '/:id'), controllerWrapper(self.remove));
+			app.put(endpoint + '/:id', controllerWrapper(self.update));
+			app.delete(endpoint + '/:id', controllerWrapper(self.remove));
 
 			return self;
 		}
