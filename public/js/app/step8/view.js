@@ -93,7 +93,6 @@ define(['text!./templates/main.html', './collections/taskCollection', './taskVie
 				var $target = $(e.target);
 				this.createTask($target.val());
 				$target.val('');
-
 			}
 		},
 
