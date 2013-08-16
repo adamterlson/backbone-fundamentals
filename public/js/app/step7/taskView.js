@@ -40,13 +40,15 @@ define(['text!./templates/task.html'], function (template) {
 		},
 
 		onDeleteTaskClick: function () {
+			e.preventDefault();
+
 			this.deleteTask();
 		},
 
 		// Methods
 
 		completeTask: function () { // No longer needs to find by ID
-			return this.model.save({ complete: true }); 
+			return this.model.save({ complete: true });
 		},
 
 		deleteTask: function () { // No longer needs to find by ID
