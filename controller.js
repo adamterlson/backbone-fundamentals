@@ -1,6 +1,6 @@
 var Backbone = require('backbone'),
 	extend = require('extend'),
-	__ = require('underscore'),
+	_ = require('underscore'),
 	path = require('path');
 
 // Controller
@@ -34,8 +34,9 @@ function Controller (database, overrides) {
 		},
 
 		create: function (req, res) {
+			debugger;
 			var model = new Backbone.Model(req.body);
-			model.set(model.idAttribute, __.uniqueId());
+			model.set(model.idAttribute, _.uniqueId());
 			database.add(model);
 			return model.toJSON();
 		},

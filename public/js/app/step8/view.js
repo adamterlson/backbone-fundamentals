@@ -74,9 +74,15 @@ define(['text!./templates/main.html', './collections/taskCollection', './taskVie
 
 		// This function is for live appending.  Don't use on initial render because it'll make rendering slow.
 		renderAppendNewTask: function (model) {
-			var $li = this.renderTask(model);
+			var $li = this.renderTask(model),
+				$taskList = this.$('.task-list > ul');
+
+			if (!$taskList.length) {
+				return this.render();
+			}
+
 			$li.hide();
-			this.$('.task-list > ul').append($li);
+			$taskList.append($li);
 			$li.fadeIn('fast');
 		},
 
@@ -111,10 +117,10 @@ define(['text!./templates/main.html', './collections/taskCollection', './taskVie
 		// Methods
 
 		// Why is this method not in the model?  Because this is the place for the view to decide
-		// what it means presentation-wise to create a task.  Maybe it needs to render a modal, 
+		// what it means presentation-wise to create a task.  Maybe it needs to render a modal,
 		// for example.  THIS IS NOT a utility method for abstracting model logic.  Put that in the model.
 		createTask: function (description) {
-			// Why split this out when it's only one line?  
+			// Why split this out when it's only one line?
 			// - Unit testing doesn't need to mock 'e' in order to test the view's creation of tasks
 			// - When the next person adds to what it means to "create" it's already abstracted
 
